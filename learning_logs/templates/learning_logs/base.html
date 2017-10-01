@@ -1,0 +1,41 @@
+{% load bootstrap3 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Learning Log</title>
+
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+<!--Статическая навигационная панель -->
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+            data-toggle="collapse" data-target="#navbar">
+            </button>
+            <a href="{%  url 'learning_logs:index' %}">Learning Log</a>
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse"></div>
+        вот тут закончил
+    </div>
+</nav>
+<p>
+    <a href="{%  url 'learning_logs:topics' %}">Topics</a> -
+    {% if user.is_authenticated %}
+        Hello, {{ user.username }}
+        <a href="{% url 'users:logout' %}">log out</a>
+    {% else %}
+        <a href="{% url 'users:register' %}">register</a>
+    <a href="{% url 'users:login' %}">log in</a>
+    {% endif %}
+</p>
+{% block content %}{% endblock content %}
+
+</body>
+</html>
