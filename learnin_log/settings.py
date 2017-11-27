@@ -44,7 +44,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    #debug_toolbox
+    # debug_toolbox
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -137,4 +137,22 @@ TEMPLATE_DIRS = (
 # мои сеттинги
 LOGIN_URL = '/users/login/'
 # для настройки стилей
-BOOTSTRAP3 = {'include_jquery': True,} # включает джиквери
+BOOTSTRAP3 = {'include_jquery': True, }  # включает джиквери
+
+# настройки Heroku
+if os.getcwd() == '/app':
+    import dj_database_url
+
+    DATABASES = {
+        'default': dj_database_url.config(default='postgres://localhost')
+    }
+    # Поддержка заголовка X-Forwarede-Proto for requis.is_secure()
+    SECURE_PROXY_SSL_HEADER = ('HTTPS_X_FORWARDED_PROTO', 'https')
+
+    # Заголовки хостов
+    ALLOWED_HOSTS = ['*']
+
+    # статика
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    STATIC_ROOT = 'staticfiles'
+    STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
