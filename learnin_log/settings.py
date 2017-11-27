@@ -88,10 +88,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'learning_log_db',  # database name in pg
-        'USER': 'dimas',  # created manualy in pg_admin
+        'USER': 'postgres',  # created manualy in pg_admin
         'PASSWORD': 'admin',
         'HOST': '',  # Set to empty string for localhost.
-        'PORT': '',  # Set to empty string for default.
+        'PORT': '5434',  # Set to empty string for default.
     }
 }
 
